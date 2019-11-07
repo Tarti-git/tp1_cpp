@@ -1,2 +1,5 @@
 ﻿  Main.cpp
+  Point.cpp
+  Génération de code en cours...
+C:\Users\baptiste.kissel\Documents\GitHub\tp1_cpp\TP_cpp\TP_cpp\Point.cpp(39,17): warning C4305: '*=' : troncation de 'double' à 'float'
   TP_cpp.vcxproj -> C:\Users\baptiste.kissel\Documents\GitHub\tp1_cpp\TP_cpp\Debug\TP_cpp.exe

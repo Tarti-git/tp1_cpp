@@ -1,6 +1,62 @@
 #include "Point.h"
 
 /*
+BUT : calculer la valeur rho des coordonnées polaires du point
+PRINCIPE : on applique la formule mathematique de rho et on retourne sa valeur
+ENTREE : le point
+SORTIE : la valeur rho
+*/
+
+float CPoint::rho()
+{
+	return sqrt(pow(nX, 2) + pow(nY, 2));
+}
+
+/*BUT: calculer la valeur theta des coordonnées polaires du point
+PRINCIPE : on applique la formule mathematique de theta et on retourne sa valeur
+ENTREE : le point
+SORTIE : la valeur theta*/
+
+float CPoint::theta()
+{
+	float t = acos(nX / rho());
+	if (nY > 0)
+		return t;
+	else
+		return -t;
+}
+
+/*
+BUT : effectuer une rotation du point
+PRINCIPE : on on multiplie notre valeur par Pi/180, puis nous multiplions nos coordonnées par les cos et sin de cette valeur
+ENTREE : le point et la valeur de rotation
+SORTIE : le point avec ses coordonnées modifiées
+*/
+
+void CPoint::rotation(float b)
+{
+	float xM, yM;
+	b *= M_PI / 180;
+	xM = nX;
+	yM = nY;
+	nX = xM * cos(b) + yM * sin(b);
+	nY = -xM * sin(b) + yM * cos(b);
+}
+
+/*
+BUT : effectuer une homothetie du point
+PRINCIPE : on multiplie les données membres nX et nY avec une valeur b;
+ENTREE : le point et la valeur de multiplication
+SORTIE : le point avec ses coordonnées modifiées
+*/
+
+void CPoint::homothetie(float b)
+{
+	nX *= b;
+	nY *= b;
+}
+
+/*
 BUT : déplacer les coordonnées du point
 PRINCIPE : on additionne les valeurs en argument avec données membres nX et nY;
 ENTREE : le point et les valeurs à ajouter à ses coordonnées

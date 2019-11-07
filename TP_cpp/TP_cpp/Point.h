@@ -1,5 +1,11 @@
 #pragma once
 #include <iostream>
+#include <math.h>
+#include <cmath>
+
+#ifndef M_PI
+#define M_PI (3.14159265358979323846)
+#endif
 
 class CPoint
 {
@@ -8,6 +14,10 @@ private:
 	float nX;
 	float nY;
 public:
+	float rho();
+	float theta();
+	void rotation(float b);
+	void homothetie(float b);
 	void deplace(float nbX, float nbY);
 	float getX();
 	float getY();
