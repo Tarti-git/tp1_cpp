@@ -1,5 +1,7 @@
 #include "Point.h"
 
+int CPoint::nbPoint = 0;
+
 /*
 BUT : calculer la valeur rho des coordonnées polaires du point
 PRINCIPE : on applique la formule mathematique de rho et on retourne sa valeur
@@ -115,14 +117,16 @@ ENTREE : le point
 SORTIE : le point (nX et nY affichés en output)
 */
 
-/*void Point::affiche()
+void CPoint::affiche()
 {
-	std::cout << "[" << nX << ":" << nY << "]\n";
-}*/
+	std::cout << "nombre de points : " << nbPoint << std::endl;
+	std::cout << "[" << getX() << ":" << getY() << "]\n";
+}
 
 //constructeur
 CPoint::CPoint(float nbX, float nbY)
 {
+	nbPoint++;
 	nRho = sqrt(pow(nbX, 2) + pow(nbY, 2));
 	nTheta = acos(nbX / nRho);
 	if (nbY < 0)

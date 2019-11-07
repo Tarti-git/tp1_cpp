@@ -13,6 +13,7 @@ private:
 	//Données membres de la classe
 	float nRho;
 	float nTheta;
+	static int nbPoint;
 public:
 	float rho();
 	float theta();
@@ -21,7 +22,7 @@ public:
 	void deplace(float nbX, float nbY);
 	float getX();
 	float getY();
-	//void affiche();
+	void affiche();
 	//constructeur
 	CPoint(float nbX, float nbY);
 	//destructeur
