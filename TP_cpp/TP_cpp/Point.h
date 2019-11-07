@@ -11,8 +11,8 @@ class CPoint
 {
 private:
 	//Données membres de la classe
-	float nX;
-	float nY;
+	float nRho;
+	float nTheta;
 public:
 	float rho();
 	float theta();

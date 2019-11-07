@@ -9,7 +9,7 @@ SORTIE : la valeur rho
 
 float CPoint::rho()
 {
-	return sqrt(pow(nX, 2) + pow(nY, 2));
+	return nRho;
 }
 
 /*BUT: calculer la valeur theta des coordonnées polaires du point
@@ -19,11 +19,7 @@ SORTIE : la valeur theta*/
 
 float CPoint::theta()
 {
-	float t = acos(nX / rho());
-	if (nY > 0)
-		return t;
-	else
-		return -t;
+	return nTheta;
 }
 
 /*
@@ -35,12 +31,21 @@ SORTIE : le point avec ses coordonnées modifiées
 
 void CPoint::rotation(float b)
 {
+	float tmpX = getX();
+	float tmpY = getY();
+
+	if (tmpY < 0)
+		nTheta *= -1;
 	float xM, yM;
 	b *= M_PI / 180;
-	xM = nX;
-	yM = nY;
-	nX = xM * cos(b) + yM * sin(b);
-	nY = -xM * sin(b) + yM * cos(b);
+	xM = tmpX;
+	yM = tmpY;
+	tmpX = xM * cos(b) + yM * sin(b);
+	tmpY = -xM * sin(b) + yM * cos(b);
+	nRho = sqrt(pow(tmpX, 2) + pow(tmpY, 2));
+	nTheta = acos(tmpX / nRho);
+	if (tmpY < 0)
+		nTheta *= -1;
 }
 
 /*
@@ -52,8 +57,13 @@ SORTIE : le point avec ses coordonnées modifiées
 
 void CPoint::homothetie(float b)
 {
-	nX *= b;
-	nY *= b;
+	float tmpX = getX() * b;
+	float tmpY = getY() * b;
+
+	nRho = sqrt(pow(tmpX, 2) + pow(tmpY, 2));
+	nTheta = acos(tmpX / nRho);
+	if (tmpY < 0)
+		nTheta *= -1;
 }
 
 /*
@@ -65,8 +75,13 @@ SORTIE : le point avec ses coordonnées modifiées
 
 void CPoint::deplace(float nbX, float nbY)
 {
-	nX += nbX;
-	nY += nbY;
+	float tmpX = getX() + nbX;
+	float tmpY = getY() + nbX;
+
+	nRho = sqrt(pow(tmpX, 2) + pow(tmpY, 2));
+	nTheta = acos(tmpX / nRho);
+	if (tmpY < 0)
+		nTheta *= -1;
 }
 
 /*
@@ -78,7 +93,7 @@ SORTIE : la valeur nX du point
 
 float CPoint::getX()
 {
-	return nX;
+	return nRho * cos(nTheta);
 }
 
 /*
@@ -90,7 +105,7 @@ SORTIE : la valeur nY du point
 
 float CPoint::getY()
 {
-	return nY;
+	return nRho * sin(nTheta);
 }
 
 /*
@@ -108,8 +123,10 @@ SORTIE : le point (nX et nY affichés en output)
 //constructeur
 CPoint::CPoint(float nbX, float nbY)
 {
-	nX = nbX;
-	nY = nbY;
+	nRho = sqrt(pow(nbX, 2) + pow(nbY, 2));
+	nTheta = acos(nbX / nRho);
+	if (nbY < 0)
+		nTheta *= -1;
 }
 
 //destructeur
