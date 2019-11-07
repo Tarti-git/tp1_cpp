@@ -7,10 +7,34 @@ ENTREE : le point et les valeurs à ajouter à ses coordonnées
 SORTIE : le point avec ses coordonnées modifiées
 */
 
-void Point::deplace(float nbX, float nbY)
+void CPoint::deplace(float nbX, float nbY)
 {
 	nX += nbX;
 	nY += nbY;
+}
+
+/*
+BUT : renvoyer la valeur de nX
+PRINCIPE : on renvoie la donnée membre privée nX par encapsulation de donnée;
+ENTREE : le point
+SORTIE : la valeur nX du point
+*/
+
+float CPoint::getX()
+{
+	return nX;
+}
+
+/*
+BUT : renvoyer la valeur de nY
+PRINCIPE : on renvoie la donnée membre privée nY par encapsulation de donnée;
+ENTREE : le point
+SORTIE : la valeur nY du point
+*/
+
+float CPoint::getY()
+{
+	return nY;
 }
 
 /*
@@ -20,19 +44,19 @@ ENTREE : le point
 SORTIE : le point (nX et nY affichés en output)
 */
 
-void Point::affiche()
+/*void Point::affiche()
 {
 	std::cout << "[" << nX << ":" << nY << "]\n";
-}
+}*/
 
 //constructeur
-Point::Point(float nbX, float nbY)
+CPoint::CPoint(float nbX, float nbY)
 {
 	nX = nbX;
 	nY = nbY;
 }
 
 //destructeur
-Point::~Point()
+CPoint::~CPoint()
 {
 }

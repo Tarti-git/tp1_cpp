@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 
-class Point
+class CPoint
 {
 private:
 	//Données membres de la classe
@@ -9,10 +9,12 @@ private:
 	float nY;
 public:
 	void deplace(float nbX, float nbY);
-	void affiche();
+	float getX();
+	float getY();
+	//void affiche();
 	//constructeur
-	Point(float nbX, float nbY);
+	CPoint(float nbX, float nbY);
 	//destructeur
-	~Point();
+	~CPoint();
 };
 
